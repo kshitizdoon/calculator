@@ -1,23 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
-
+import Pic from './assets/calc_img.png';
+import Buttons from "./Buttons.js"
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <img src = {Pic} className="calc_img" width={250} height={250}></img>
+      <div className='container'>
+        <div className='header'>
+          <h1>Scientific Calculator</h1>
+        </div>
+        <div className='screen'>
+          <div className='calculation_screen'>
+            2+4
+          </div>
+          <div className='results_screen'>
+            =6
+          </div>
+        </div>
+        <div className='buttons'>
+          <Buttons />
+        </div>
+      </div>
     </div>
   );
 }
