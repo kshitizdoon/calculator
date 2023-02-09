@@ -1,27 +1,27 @@
-// import './Buttons.css';
-import { useTable } from 'react-table';
-import ReactTable from 'react-table';
-import React, { Component } from 'react';  
-// import "react-table/react-table.css";  
-
-function Buttons() {
+import './Buttons.css';
+import React, { Component,useState } from 'react';  
+function Buttons(props) {
   let strings = [
-    ["<",">","DEL","Clr"],
-    ["M","M+","MR","MC"],
+    ["DEL","Clear","(",")"],
     ["/","7","8","9"],
-    ["X","4","5","6"],
+    ["*","4","5","6"],
     ["-","1","2","3"],
-    ["+","0",".","(-)"],
+    ["+","0",".",","],
+    ["Gcd","Lcm","Sin","Cos"],
     ["Ans","Enter"]
   ];
   return (
-    <div>
+    <div className='button_grid'>
         {
             strings.map(row=>(
-                <div>
-                    {row.map(buttons=>(
-                        <button>{buttons}</button>
-                    ))}
+                <div className='button_rows'>
+                    {row.map(buttons=>
+                        buttons === "Enter"?
+                        (<button className='button__enter' >{buttons}</button>)
+                        :
+                        (<button onClick={() => props.handleClick(buttons)}   className='button'>{buttons}</button>)
+                    )
+                }
                 </div>
             ))
         }

@@ -1,0 +1,14 @@
+.button__grid{
+    display: flex;
+    width: 10px;
+    height:10px;
+    flex-direction: row;
+}
+.button__enter{
+    width: 225px;
+    height:25px;
+}
+.button{
+    width: 75px;
+    height:25px;
+}

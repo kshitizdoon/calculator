@@ -1,24 +1,58 @@
 import './App.css';
 import Pic from './assets/calc_img.png';
 import Buttons from "./Buttons.js"
+import {useState} from 'react'
+import Evaluate from "./Evaluate.js"
+
 function App() {
+  const [calc, setCalc] = useState("");
+  const [res, setRes] = useState("");
+  
+  function ChangCalc(button){
+    if(button==="Clear"){
+        setCalc(
+          prevCalc => ("")
+        )
+        setRes(
+          prevRes => ("")
+        )
+
+    }
+    else if(button==="DEL"){
+      setCalc(
+        prevCalc => (prevCalc.slice(0, prevCalc.length-1))
+      )
+    }
+    else if(button==="Ans"){
+      setRes(
+        prevRes => (Evaluate(calc))
+      )
+    }
+    else{
+      setCalc(
+        prevCalc => (
+          prevCalc+button
+        )
+      )
+    }
+  }
   return (
     <div>
-      <img src = {Pic} className="calc_img" width={250} height={250}></img>
+      <img src = {Pic} className="calc_img" width={300} height={250}></img>
       <div className='container'>
         <div className='header'>
-          <h1>Scientific Calculator</h1>
+          <h3>Scientific Calculator</h3>
         </div>
         <div className='screen'>
-          <div className='calculation_screen'>
-            2+4
+          <div className='screen__calculation'>
+            {calc}
           </div>
-          <div className='results_screen'>
-            =6
+          <div className='screen__results'>
+            {res}
           </div>
         </div>
         <div className='buttons'>
-          <Buttons />
+          <Buttons handleClick = {ChangCalc} state = {calc}/>
         </div>
       </div>
     </div>
