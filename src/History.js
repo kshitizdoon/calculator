@@ -3,7 +3,11 @@ import React from 'react'
 function History(props) {
   
     return (
-    <div>{props.history}</div>
+    <div>
+        <button onClick = {props.handleClick}>Back</button>
+        
+        {props.history}    
+    </div>
   )
 }
 

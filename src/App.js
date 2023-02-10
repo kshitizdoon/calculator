@@ -8,7 +8,11 @@ function App() {
   const [calc, setCalc] = useState("");
   const [res, setRes] = useState("");
   const [hist, setHist] = useState([""]);
+  const [showhist, setShowhist] = useState(0);
   
+  function ChangeShowhist(){
+    setShowhist(prevShowhist=>(!prevShowhist))
+  }
   function ChangCalc(button){
     if(button==="Clear"){
         setCalc(
@@ -36,7 +40,7 @@ function App() {
       )
     }
     else if(button === "Show History"){
-      <History history = {hist}/>
+      setShowhist(prevShowhist => (!prevShowhist))
     }
     else{
       setCalc(
@@ -47,7 +51,7 @@ function App() {
     }
   }
   return (
-    <div>
+      (showhist == 0) ? (
       <div className='container'>
         <div className='header'>
           <h3>Scientific Calculator</h3>
@@ -64,7 +68,9 @@ function App() {
           <Buttons handleClick = {ChangCalc} state = {calc}/>
         </div>
       </div>
-    </div>
+      ):(
+        <History history = {hist} handleClick = {ChangeShowhist} />
+      )
   );
 }
 

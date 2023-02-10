@@ -17,7 +17,7 @@ function Buttons(props) {
                 <div className='button_rows'>
                     {row.map(buttons=>
                         buttons === "Show History"?
-                        (<button className='button__enter' >{buttons}</button>)
+                        (<button onClick={() => props.handleClick(buttons)} className='button__enter' >{buttons}</button>)
                         :
                         (<button onClick={() => props.handleClick(buttons)}   className='button'>{buttons}</button>)
                     )
