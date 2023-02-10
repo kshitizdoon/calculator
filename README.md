@@ -1,2 +1,7 @@
-# Calculator App
-![image](https://user-images.githubusercontent.com/80268413/218023995-e873971b-17e2-4122-9e97-542f63088afb.png)
+# Calculator
+
+
+
+
+![image](https://user-images.githubusercontent.com/80268413/218156871-1cc47703-5b49-4d07-bf5e-3ecde45a3544.png)
+
