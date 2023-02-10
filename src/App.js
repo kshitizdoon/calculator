@@ -3,10 +3,11 @@ import './App.css';
 import Buttons from "./Buttons.js"
 import {useState} from 'react'
 import Evaluate from "./Evaluate.js"
-
+import History from "./History.js"
 function App() {
   const [calc, setCalc] = useState("");
   const [res, setRes] = useState("");
+  const [hist, setHist] = useState([""]);
   
   function ChangCalc(button){
     if(button==="Clear"){
@@ -16,7 +17,6 @@ function App() {
         setRes(
           prevRes => ("")
         )
-
     }
     else if(button==="DEL"){
       setCalc(
@@ -27,6 +27,16 @@ function App() {
       setRes(
         prevRes => (Evaluate(calc))
       )
+      setHist(
+        prevHist => (
+          [...prevHist,
+          calc + " = " + res]
+          // prevHist.push(calc + " = " + res)
+        )
+      )
+    }
+    else if(button === "Show History"){
+      <History history = {hist}/>
     }
     else{
       setCalc(

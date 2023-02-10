@@ -1,11 +1,10 @@
 import React from 'react'
 function lcm(a,b) {
-    return (a*b)/gcd(a,b);
+    return Math.round((a*b)/gcd(a,b));
 }
 function gcd(a,b) {
-
-    a = Math.abs(a);
-    b = Math.abs(b);
+    a = Math.abs(Math.round(a));
+    b = Math.abs(Math.round(b));
     if (b > a) {var temp = a; a = b; b = temp;}
     while (true) {
         if (b == 0) return a;
@@ -86,11 +85,7 @@ function Evaluate(expression)
                          hasPrecedence(tokens[i],
                                      ops[ops.length - 1]))
                 {
-                    if(ops[ops.length-1]==='S'||ops[ops.length-1]==='C'){
-                        values.push(applyOpp(ops.pop(),values.pop()));
-                    }
-                    else
-                        values.push(applyOp(ops.pop(),values.pop(),values.pop()));
+                    values.push(applyOp(ops.pop(),values.pop(),values.pop()));
                 }
   
                 // Push current token to 'ops'.
@@ -111,6 +106,7 @@ function Evaluate(expression)
                     else exp+=tokens[i];
                     i++;
                 }
+                i--;
                 if(operation=='S')values.push(Math.sin(Evaluate(exp)));
                 else if(operation=='C')values.push(Math.cos(Evaluate(exp)));
                 else if(operation=='G')values.push(gcd(Evaluate(exp),Evaluate(exp2)));
