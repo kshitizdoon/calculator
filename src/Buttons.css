@@ -5,10 +5,10 @@
     flex-direction: row;
 }
 .button__enter{
-    width: 225px;
+    width: 300px;
     height:25px;
 }
 .button{
-    width: 75px;
+    width: 100px;
     height:25px;
 }
