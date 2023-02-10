@@ -5,8 +5,9 @@ function History(props) {
     return (
     <div>
         <button onClick = {props.handleClick}>Back</button>
-        
-        {props.history}    
+        {props.history.map(string =>(
+            <li>{string}</li>
+        ))}    
     </div>
   )
 }

@@ -15,39 +15,24 @@ function App() {
   }
   function ChangCalc(button){
     if(button==="Clear"){
-        setCalc(
-          prevCalc => ("")
-        )
-        setRes(
-          prevRes => ("")
-        )
+        setCalc(prevCalc => (""))
+        setRes(prevRes => (""))
     }
     else if(button==="DEL"){
-      setCalc(
-        prevCalc => (prevCalc.slice(0, prevCalc.length-1))
-      )
+      setCalc(prevCalc => (prevCalc.slice(0, prevCalc.length-1)))
     }
     else if(button==="Ans"){
-      setRes(
-        prevRes => (Evaluate(calc))
-      )
-      setHist(
-        prevHist => (
-          [...prevHist,
-          calc + " = " + res]
-          // prevHist.push(calc + " = " + res)
-        )
-      )
+      setRes(prevRes => (Evaluate(calc)))
+      setHist(prevHist => ([...prevHist, calc + " = " + res]))
     }
-    else if(button === "Show History"){
+    else if(button === "History"){
       setShowhist(prevShowhist => (!prevShowhist))
     }
+    else if(button === "Clear History"){
+      setHist(prevHist => ([""]))
+    }
     else{
-      setCalc(
-        prevCalc => (
-          prevCalc+button
-        )
-      )
+      setCalc(prevCalc => (prevCalc+button))
     }
   }
   return (
@@ -57,12 +42,8 @@ function App() {
           <h3>Scientific Calculator</h3>
         </div>
         <div className='screen'>
-          <div className='screen__calculation'>
-            {calc}
-          </div>
-          <div className='screen__results'>
-            {res}
-          </div>
+          <div className='screen__calculation'>{calc}</div>
+          <div className='screen__results'>{res}</div>
         </div>
         <div className='buttons'>
           <Buttons handleClick = {ChangCalc} state = {calc}/>

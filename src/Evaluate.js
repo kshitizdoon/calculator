@@ -13,6 +13,11 @@ function gcd(a,b) {
         b %= a;
     }
 }
+function pow(a,b){
+    a = Math.round(a);
+    b = Math.round(b);
+    return Math.pow(a,b);
+}
 function Evaluate(expression)
     {
         let tokens = expression.split('');
@@ -26,18 +31,13 @@ function Evaluate(expression)
         for (let i = 0; i < tokens.length; i++)
         {
              // Current token is a whitespace, skip it
-            if (tokens[i] === ' '||tokens[i]=== ',')
-            {
-                continue;
-            }
+            if (tokens[i] === ' '||tokens[i]=== ','){continue;}
   
             // Current token is a number, push it to stack for numbers
             if ((tokens[i] >= '0' && tokens[i] <= '9')||(tokens[i]==='.'))
             {
                 let sbuf = "";
-                  
-                // There may be more than
-                // one digits in number
+                // There may be more than one digits in number
                 while (i < tokens.length && (tokens[i] >= '0' && tokens[i] <= '9')||(tokens[i]==='.'))
                 {
                     sbuf = sbuf + tokens[i++];
@@ -50,40 +50,32 @@ function Evaluate(expression)
                 // decrease the value of i by 1 to correct the offset.
                   i--;
             }
-  
-            // Current token is an opening
-            // brace, push it to 'ops'
-            else if (tokens[i] == '(')
-            {
-                ops.push(tokens[i]);
+            else if(tokens[i]==='e'){
+                values.push(parseFloat(Math.E));
             }
+            else if(tokens[i]==='π'){values.push(parseFloat(Math.PI));}
+            // Current token is an opening brace, push it to 'ops'
+            else if (tokens[i] == '('){ops.push(tokens[i]);}
   
             // Closing brace encountered, solve entire brace
             else if (tokens[i] == ')')
             {
                 while (ops[ops.length - 1] != '(')
                 {
-                  values.push(applyOp(ops.pop(),
-                                   values.pop(),
-                                  values.pop()));
+                  values.push(applyOp(ops.pop(),values.pop(),values.pop()));
                 }
                 ops.pop();
             }
   
             // Current token is an operator.
-            else if (tokens[i] == '+' ||tokens[i] == '-' ||tokens[i] == '*' ||
-                     tokens[i] == '/' )
+            else if (tokens[i] == '+' ||tokens[i] == '-' ||tokens[i] == '*' ||tokens[i] == '/' )
             {
                   
-                // While top of 'ops' has same
-                // or greater precedence to current
-                // token, which is an operator.
-                // Apply operator on top of 'ops'
+                // While top of 'ops' has same or greater precedence to current
+                // token, which is an operator. Apply operator on top of 'ops'
                 // to top two elements in values stack
 
-                while (ops.length > 0 &&
-                         hasPrecedence(tokens[i],
-                                     ops[ops.length - 1]))
+                while (ops.length > 0 && hasPrecedence(tokens[i],ops[ops.length - 1]))
                 {
                     values.push(applyOp(ops.pop(),values.pop(),values.pop()));
                 }
@@ -91,13 +83,12 @@ function Evaluate(expression)
                 // Push current token to 'ops'.
                 ops.push(tokens[i]);
             }
-            else if(tokens[i] == 'S' ||tokens[i] == 'C' || tokens[i] == 'G' ||tokens[i] == 'L'){
+            else if(tokens[i] == 'S' ||tokens[i] == 'C' || tokens[i] == 'G' ||tokens[i] == 'L'||tokens[i]=='P'){
                 let num_braces=1;
                 let operation = tokens[i];
-                // Sin(
                 i+=4;
                 let exp = ""; let exp2="";
-                while(num_braces){
+                while((i<tokens.length)&&num_braces){
                     if(tokens[i]==')')num_braces-=1;
                     else if(tokens[i]=='(')num_braces+=1;
                     else if(tokens[i]==','){
@@ -110,6 +101,7 @@ function Evaluate(expression)
                 if(operation=='S')values.push(Math.sin(Evaluate(exp)));
                 else if(operation=='C')values.push(Math.cos(Evaluate(exp)));
                 else if(operation=='G')values.push(gcd(Evaluate(exp),Evaluate(exp2)));
+                else if(operation=='P')values.push(pow(Evaluate(exp),Evaluate(exp2)));
                 else {
                     values.push(lcm(Evaluate(exp),Evaluate(exp2)));
                 }
@@ -124,11 +116,7 @@ function Evaluate(expression)
         // ops to remaining values
         while (ops.length > 0)
         {
-            if(ops[ops.length-1]==='S'||ops[ops.length-1]==='C'){
-                values.push(applyOpp(ops.pop(),values.pop()));
-            }
-            else
-                values.push(applyOp(ops.pop(),values.pop(),values.pop()));
+            values.push(applyOp(ops.pop(),values.pop(),values.pop()));
         }
   
         // Top of 'values' contains
@@ -176,10 +164,6 @@ function applyOp(op, b, a)
         return parseFloat(a / b, 10);
     }
     return 0;
-}
-function applyOpp(op,a){
-    if(op=='S')return Math.sin(a);
-    else return Math.cos(a);
 }
 
 export default Evaluate;
