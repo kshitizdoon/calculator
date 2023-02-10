@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/kshitizdoon/calculator/static/css/main.e72a51c5.css",
-    "main.js": "/kshitizdoon/calculator/static/js/main.34bd0690.js",
-    "static/js/787.a174f9e5.chunk.js": "/kshitizdoon/calculator/static/js/787.a174f9e5.chunk.js",
-    "index.html": "/kshitizdoon/calculator/index.html",
-    "main.e72a51c5.css.map": "/kshitizdoon/calculator/static/css/main.e72a51c5.css.map",
-    "main.34bd0690.js.map": "/kshitizdoon/calculator/static/js/main.34bd0690.js.map",
-    "787.a174f9e5.chunk.js.map": "/kshitizdoon/calculator/static/js/787.a174f9e5.chunk.js.map"
+    "main.css": "/calculator/static/css/main.e72a51c5.css",
+    "main.js": "/calculator/static/js/main.f9b7f79d.js",
+    "static/js/787.a174f9e5.chunk.js": "/calculator/static/js/787.a174f9e5.chunk.js",
+    "index.html": "/calculator/index.html",
+    "main.e72a51c5.css.map": "/calculator/static/css/main.e72a51c5.css.map",
+    "main.f9b7f79d.js.map": "/calculator/static/js/main.f9b7f79d.js.map",
+    "787.a174f9e5.chunk.js.map": "/calculator/static/js/787.a174f9e5.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e72a51c5.css",
-    "static/js/main.34bd0690.js"
+    "static/js/main.f9b7f79d.js"
   ]
 }
