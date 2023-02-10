@@ -22,8 +22,10 @@ function App() {
       setCalc(prevCalc => (prevCalc.slice(0, prevCalc.length-1)))
     }
     else if(button==="Ans"){
-      setRes(prevRes => (Evaluate(calc)))
-      setHist(prevHist => ([...prevHist, calc + " = " + res]))
+      let result = Evaluate(calc);
+      setRes(prevRes => (result))
+
+      setHist(prevHist => ([...prevHist, calc + " = " + result]))
     }
     else if(button === "History"){
       setShowhist(prevShowhist => (!prevShowhist))
