@@ -41,7 +41,7 @@ function App() {
       (showhist == 0) ? (
       <div className='container'>
         <div className='header'>
-          <h3>Scientific Calculator</h3>
+          <div className='title'>Scientific Calculator</div>
         </div>
         <div className='screen'>
           <div className='screen__calculation'>{calc}</div>
