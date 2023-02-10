@@ -1,5 +1,5 @@
 import './App.css';
-import Pic from './assets/calc_img.png';
+// import Pic from './assets/calc_img.png';
 import Buttons from "./Buttons.js"
 import {useState} from 'react'
 import Evaluate from "./Evaluate.js"
@@ -38,7 +38,6 @@ function App() {
   }
   return (
     <div>
-      <img src = {Pic} className="calc_img" width={300} height={250}></img>
       <div className='container'>
         <div className='header'>
           <h3>Scientific Calculator</h3>
